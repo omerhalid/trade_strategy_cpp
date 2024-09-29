@@ -32,21 +32,9 @@ int main()
     std::cout << "Long SMA (" << Strategy::longPeriod << "): " << longSMA << std::endl;
     std::cout << "RSI: " << rsi << std::endl;
 
-    if (shortSMA > longSMA) {
-        std::cout << "Moving Average Buy signal" << std::endl;
-    } else if (shortSMA < longSMA) {
-        std::cout << "Moving Average Sell signal" << std::endl;
-    } else {
-        std::cout << "Moving Average Hold" << std::endl;
-    }
+    movingAverageLogger(shortSMA, longSMA);
 
-    if (rsi < 30) {
-        std::cout << "RSI Buy signal" << std::endl;
-    } else if (rsi > 70) {
-        std::cout << "RSI Sell signal" << std::endl;
-    } else {
-        std::cout << "RSI Hold" << std::endl;
-    }
+    rsiLogger(rsi);
 
     return 0;
 }
