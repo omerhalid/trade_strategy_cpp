@@ -14,4 +14,7 @@ public:
 
     // calculate RSI
     static double calculateRSI(const std::vector<double>& prices, int period = 14);
+
+    // calculate Bollinger Bands
+    static std::tuple<double, double, double> calculateBollingerBands(const std::vector<double>& prices, int period = 20, double numStdDev = 2.0);
 };

@@ -174,6 +174,17 @@ void rsiLogger(const double rsi)
     }
 }
 
+void bollingerBandsLogger(const double lowerBand, const double middleBand, const double upperBand, const double lastPrice)
+{
+    if (lastPrice < lowerBand) {
+        std::cout << "Bollinger Bands Buy signal" << std::endl;
+    } else if (lastPrice > upperBand) {
+        std::cout << "Bollinger Bands Sell signal" << std::endl;
+    } else {
+        std::cout << "Bollinger Bands Hold" << std::endl;
+    }
+}
+
 void loadMenu() {
     std::map<int, std::string> menuOptions = {
         {1, "Display available stocks"},
@@ -206,25 +217,28 @@ void loadMenu() {
                 break;
             }
             case 2: {
-                std::string stock;
-                std::cout << "Enter stock name: ";
-                std::cin >> stock;
+                    std::string stock;
+                    std::cout << "Enter stock name: ";
+                    std::cin >> stock;
 
-                std::string response = fetchMarketData(apiKey, stock);
-                std::vector<double> closePrices = parseMarketData(response);
+                    std::string response = fetchMarketData(apiKey, stock);
+                    std::vector<double> closePrices = parseMarketData(response);
 
-                double shortSMA = Strategy::calculateShortPeriodMovingAverage(closePrices);
-                double longSMA = Strategy::calculateLongPeriodMovingAverage(closePrices);
-                double rsi = Strategy::calculateRSI(closePrices);
+                    double shortSMA = Strategy::calculateShortPeriodMovingAverage(closePrices);
+                    double longSMA = Strategy::calculateLongPeriodMovingAverage(closePrices);
+                    double rsi = Strategy::calculateRSI(closePrices);
+                    auto [lowerBand, middleBand, upperBand] = Strategy::calculateBollingerBands(closePrices);
 
-                std::cout << "Short SMA: " << shortSMA << "\n";
-                std::cout << "Long SMA: " << longSMA << "\n";
-                std::cout << "RSI: " << rsi << "\n";
+                    std::cout << "Short SMA: " << shortSMA << "\n";
+                    std::cout << "Long SMA: " << longSMA << "\n";
+                    std::cout << "RSI: " << rsi << "\n";
+                    std::cout << "Bollinger Bands: Lower=" << lowerBand << ", Middle=" << middleBand << ", Upper=" << upperBand << "\n";
 
-                movingAverageLogger(shortSMA, longSMA);
-                rsiLogger(rsi);
-                break;
-            }
+                    movingAverageLogger(shortSMA, longSMA);
+                    rsiLogger(rsi);
+                    bollingerBandsLogger(lowerBand, middleBand, upperBand, closePrices.back()); // Pass the latest price
+                    break;
+                }
             case 3:
                 std::cout << "Exiting...\n";
                 return;

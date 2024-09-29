@@ -1,4 +1,6 @@
 #include "../inc/strategy.hpp"
+#include <cmath>
+#include <numeric>
 
 // Calculate short period moving average
 double Strategy::calculateShortPeriodMovingAverage(const std::vector<double>& prices) {
@@ -35,4 +37,20 @@ double Strategy::calculateRSI(const std::vector<double>& prices, int period) {
 
     double rs = gain / loss;
     return 100.0 - (100.0 / (1.0 + rs));
+}
+
+// Calculate Bollinger Bands
+std::tuple<double, double, double> Strategy::calculateBollingerBands(const std::vector<double>& prices, int period, double numStdDev) {
+    if (prices.size() < period) return {0.0, 0.0, 0.0};
+
+    double sum = std::accumulate(prices.end() - period, prices.end(), 0.0);
+    double mean = sum / period;
+
+    double sq_sum = std::inner_product(prices.end() - period, prices.end(), prices.end() - period, 0.0);
+    double stdev = std::sqrt(sq_sum / period - mean * mean);
+
+    double upperBand = mean + numStdDev * stdev;
+    double lowerBand = mean - numStdDev * stdev;
+
+    return {lowerBand, mean, upperBand};
 }
