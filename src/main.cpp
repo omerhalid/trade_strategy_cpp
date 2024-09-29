@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "utils.hpp"
-#include "strategy.hpp"
+#include "../inc/utils.hpp"
+#include "../inc/strategy.hpp"
 
 int main()
 {
@@ -26,16 +26,26 @@ int main()
 
     double shortSMA = Strategy::calculateShortPeriodMovingAverage(closePrices);
     double longSMA = Strategy::calculateLongPeriodMovingAverage(closePrices);
+    double rsi = Strategy::calculateRSI(closePrices);
 
     std::cout << "Short SMA (" << Strategy::shortPeriod << "): " << shortSMA << std::endl;
     std::cout << "Long SMA (" << Strategy::longPeriod << "): " << longSMA << std::endl;
+    std::cout << "RSI: " << rsi << std::endl;
 
     if (shortSMA > longSMA) {
-        std::cout << "Buy signal" << std::endl;
+        std::cout << "Moving Average Buy signal" << std::endl;
     } else if (shortSMA < longSMA) {
-        std::cout << "Sell signal" << std::endl;
+        std::cout << "Moving Average Sell signal" << std::endl;
     } else {
-        std::cout << "Hold" << std::endl;
+        std::cout << "Moving Average Hold" << std::endl;
+    }
+
+    if (rsi < 30) {
+        std::cout << "RSI Buy signal" << std::endl;
+    } else if (rsi > 70) {
+        std::cout << "RSI Sell signal" << std::endl;
+    } else {
+        std::cout << "RSI Hold" << std::endl;
     }
 
     return 0;
