@@ -31,4 +31,7 @@
 *.out
 *.app
 
+# Ignore generated documentation
+docs/
+
 .env
