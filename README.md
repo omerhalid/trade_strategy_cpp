@@ -1,12 +1,8 @@
-Here’s a detailed `README.md` for your GitHub repository, along with a short description and relevant hashtags.
-
----
-
 ## **README.md**
 
 # Stock Analysis and Trading Signals
 
-This project provides a simple C++ stock analysis tool that fetches real-time stock data, calculates various technical indicators like Moving Averages, RSI (Relative Strength Index), and Bollinger Bands, and logs buy/sell/hold signals based on these indicators. The project utilizes external APIs (like Alpha Vantage) for fetching market data and is designed to be extended for more complex trading strategies.
+This project provides a C++ stock analysis tool that fetches real-time stock data, calculates various technical indicators like Moving Averages, RSI (Relative Strength Index), and Bollinger Bands, and logs buy/sell/hold signals based on these indicators. The project utilizes external APIs (like Alpha Vantage) for fetching market data and is designed to be extended for more complex trading strategies.
 
 ### **Features**
 
