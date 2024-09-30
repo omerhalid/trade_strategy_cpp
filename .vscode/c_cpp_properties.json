@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "C:\\curl\\include",
-                "C:\\Users\\katka\\source\\market_data_handler\\json"
+                "C:\\Users\\katka\\source\\market_data_handler\\json",
+                "C:\\Users\\katka\\source\\fix_nokia_repo\\multithreaded_rps_cpp\\multithreaded_rps\\googletest\\googletest\\include"
             ],
             "compilerPath": "C:/Users/katka/Downloads/winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-18.1.8-mingw-w64ucrt-12.0.0-r1/mingw64/bin/gcc.exe",
             "cStandard": "${default}",
