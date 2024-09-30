@@ -45,7 +45,7 @@ This project provides a C++ stock analysis tool that fetches real-time stock dat
 
 3. Compile the project:
     ```bash
-    g++ -std=c++17 -o stock_analysis main.cpp utils.cpp strategy.cpp -lcurl
+    g++ -o market_data_fetcher src/main.cpp src/strategy.cpp src/utils.cpp -I"C:/curl/include" -I"C:/Users/katka/source/market_data_handler/json" -I"C:/Users/katka/source/trade_strategy_cpp/inc" -L"C:/curl/lib" -lcurl
     ```
 
 4. Run the program:
