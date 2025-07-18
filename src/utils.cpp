@@ -27,8 +27,7 @@ void loadEnv() {
         if (std::getline(lineStream, key, '=')) {
             std::string value;
             if (std::getline(lineStream, value)) {
-                std::string envVar = key + "=" + value;
-                putenv(envVar.c_str());
+                setenv(key.c_str(), value.c_str(), 1);
             }
         }
     }
